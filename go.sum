@@ -1,0 +1,8 @@
+github.com/Go-zh/net v0.0.0-20160426012849-8e20723732c4 h1:9tIYxs5WvoirQCxhmf8zlTwcF1nAgjsav5nl77dQenY=
+github.com/Go-zh/net v0.0.0-20160426012849-8e20723732c4/go.mod h1:t2ntEWu4AsyBaXZElGlbWwzEg/gAF1eFp6y5wZC0Qyk=
+github.com/Go-zh/tools v0.0.0-20181122030718-e5a8247a13a9 h1:QzKeGcigMeHrUUWamNvK+Yprm983OdaXLzaVdJZF1Go=
+github.com/Go-zh/tools v0.0.0-20181122030718-e5a8247a13a9/go.mod h1:vOYJ3r5gYoU1WhIWUItPMOYCOB9h1MNstkmYFfv97w8=
+github.com/Go-zh/tour v0.0.0-20190307142335-881eb70eaf40 h1:HVhF+z9LxOEHB/sRqxj0PunkimNHudx6KaGpngMu5ls=
+github.com/Go-zh/tour v0.0.0-20190307142335-881eb70eaf40/go.mod h1:aKzcTYCys3Ou5k8k1Q82C9kPXq9p5exsEezKAiVIWh4=
+golang.org/x/tour v0.0.0-20190307183940-45a20b0d69ef h1:Aq8UjC5VSvQyFBgmfDpVuGCNvCha+ngKPKGAD2tYgMY=
+golang.org/x/tour v0.0.0-20190307183940-45a20b0d69ef/go.mod h1:Lbf3mfakj6qjmukz+0azQ0h/7VnmeB3MNyEfLwE07Lw=
