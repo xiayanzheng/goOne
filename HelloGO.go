@@ -5,6 +5,7 @@ import (
 	"math"
 	"math/rand"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -19,6 +20,8 @@ var (
 type dict struct {
 	Y, X int
 }
+
+func compute(fn func(float64, float64) float64) float64 { return fn(3, 4) }
 
 func plus(x, y int) int {
 	return x + y
@@ -35,13 +38,15 @@ func split(sum int) (x, y int) {
 }
 
 func section(title string) {
+	var arrow string = ""
 	if sectionState == false {
-		fmt.Printf("----------\\/%s\\/----------\n", title)
+		arrow = "\\/"
 		sectionState = true
 	} else if sectionState == true {
-		fmt.Printf("----------/\\%s/\\----------\n", title)
+		arrow = "/\\"
 		sectionState = false
 	}
+	fmt.Printf("----------%s%s%s----------\n", arrow, title, arrow)
 }
 
 func printSlice(s []int) {
@@ -275,6 +280,103 @@ func learnMakeSlice() {
 	printSlice2("d", d)
 }
 
+func learnSliceOfSlice() {
+	section("切片的切片")
+	board := [][]string{
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+	}
+	board[0][0] = "X"
+	board[2][2] = "O"
+	board[1][2] = "X"
+	board[1][0] = "O"
+	board[0][2] = "X"
+
+	for i := 0; i < len(board); i++ {
+		fmt.Printf("%s\n", strings.Join(board[i], " "))
+	}
+}
+
+func learnSliceAppend() {
+	section("向切片追加元素")
+	var s []int
+	printSlice(s)
+	s = append(s, 0)
+	printSlice(s)
+	s = append(s, 1)
+	printSlice(s)
+	s = append(s, 2, 3, 4, 5)
+	printSlice(s)
+}
+
+func learnRange() {
+	section("Range")
+	var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
+	for i, v := range pow {
+		fmt.Printf("2**%d = %d\n", i, v)
+	}
+
+	powx := make([]int, 10)
+	for i := range powx {
+		powx[i] = 1 << uint(i)
+	}
+	for _, value := range powx {
+		fmt.Printf("%d\n", value)
+	}
+}
+
+func learnMap() {
+	section("映射")
+
+	type Vertex struct {
+		Lat, Long float64
+	}
+
+	var m map[string]Vertex
+	m = make(map[string]Vertex)
+	m["Bell Labs"] = Vertex{40.68433, -74.39967}
+	fmt.Println(m["Bell Labs"])
+}
+
+func learnMapLiterals() {
+	section("映射的文法")
+	type Vertex struct {
+		lat, long float64
+	}
+
+	var m = map[string]Vertex{
+		"Google": {213.13213123, 34.213123123},
+		"Tesla":  {216.13213123, 32.213123123},
+	}
+	fmt.Println(m)
+}
+
+func learnMutatungMaps() {
+	section("修改映射")
+	var sr string = "The Value is:"
+	m := make(map[string]int)
+	m["Answer"] = 42
+	fmt.Println(sr, m["Answer"])
+	m["Answer"] = 48
+	fmt.Println(sr, m["Answer"])
+	delete(m, "Answer")
+	fmt.Println(sr, m["Answer"])
+	v, ok := m["Answer"]
+	fmt.Println(sr, v, "present?", ok)
+
+}
+
+func learnFunctionValue() {
+	section("函数值")
+	hypot := func(x, y float64) float64 {
+		return math.Sqrt(x*x + y*y)
+	}
+	fmt.Println(hypot(5, 12))
+	fmt.Println(compute(hypot))
+	fmt.Println(compute(math.Pow))
+}
+
 func main() {
 	//learnVar()
 	//learnMath()
@@ -291,7 +393,14 @@ func main() {
 	//learnSlicePointer()
 	//learnSliceLiterals()
 	//learnSliceBounds()
-	learnSliceLenCap()
-	learnNilslice()
-	learnMakeSlice()
+	//learnSliceLenCap()
+	//learnNilslice()
+	//learnMakeSlice()
+	//learnSliceOfSlice()
+	//learnSliceAppend()
+	//learnRange()
+	//learnMap()
+	//learnMapLiterals()
+	//learnMutatungMaps()
+	learnFunctionValue()
 }
