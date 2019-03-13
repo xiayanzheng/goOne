@@ -58,6 +58,14 @@ func printSlice2(s string, x []int) {
 		s, len(x), cap(x), x)
 }
 
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
+
 func learnVar() {
 	var hg = "Hello Go@"
 	fmt.Println(hg)
@@ -377,6 +385,55 @@ func learnFunctionValue() {
 	fmt.Println(compute(math.Pow))
 }
 
+func learnFunctionClosure() {
+	section("函数的闭包")
+	pos, neg := adder(), adder()
+	for i := 0; i < 10; i++ {
+		fmt.Println(pos(i))
+		fmt.Println(neg(-2 * i))
+	}
+}
+
+type vertex struct {
+	X, Y float64
+}
+
+func (v vertex) Abs() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func learnMetho(x float64, y float64) {
+	section("方法")
+	v := vertex{x, y}
+	fmt.Println(v.Abs())
+}
+
+type myfloat float64
+
+func (f myfloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
+}
+
+func learnMethodC() {
+	section("方法（续）")
+	f := myfloat(-math.Sqrt2)
+	fmt.Println(f.Abs())
+}
+
+func (v *vertex) scale(f float64) {
+	v.X = v.X * f
+	v.Y = v.Y * f
+}
+
+func learnMethodPointer() {
+	v := vertex{3, 4}
+	v.scale(10)
+	fmt.Println(v.Abs())
+}
+
 func main() {
 	//learnVar()
 	//learnMath()
@@ -402,5 +459,9 @@ func main() {
 	//learnMap()
 	//learnMapLiterals()
 	//learnMutatungMaps()
-	learnFunctionValue()
+	//learnFunctionValue()
+	learnFunctionClosure()
+	learnMetho(3, 6)
+	learnMethodC()
+	learnMethodPointer()
 }
